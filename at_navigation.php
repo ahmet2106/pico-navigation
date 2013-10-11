@@ -81,12 +81,13 @@ class AT_Navigation {
 			$child = $start ? sprintf($ul, $id, $class, $child) : sprintf($ul, $child);
 		}
 		
+		$navTitle	= (isset($navigation['navtitle'])) ? $navigation['navtitle'] : $navigation['title'];
 		$li = isset($navigation['title'])
 			? sprintf(
 				'<li class="%1$s"><a href="%2$s" class="%1$s" title="%3$s">%3$s</a>%4$s</li>',
 				$navigation['class'],
 				$navigation['url'],
-				$navigation['title'],
+				$navTitle,
 				$child
 			)
 			: $child;
@@ -127,13 +128,14 @@ class AT_Navigation {
 	
 	private function at_recursive($split = array(), $page = array(), $current_page = array())
 	{
+		$activeClass = (isset($this->settings['at_navigation']['activeClass'])) ? $this->settings['at_navigation']['activeClass'] : 'is-active';
 		if (count($split) == 1)
 		{			
 			$is_index = ($split[0] == '') ? true : false;
 			$ret = array(
-				'title'			=> $page['title'],
+				'title'			=> (isset($page['navtitle']) ? $page['navtitle'] : $page['title']),
 				'url'			=> $page['url'],
-				'class'			=> ($page['url'] == $current_page['url']) ? 'is-active' : ''
+				'class'			=> ($page['url'] == $current_page['url']) ? $activeClass : ''
 			);
 			
 			$split0 = ($split[0] == '') ? '_index' : $split[0];
