@@ -127,13 +127,14 @@ class AT_Navigation {
 	
 	private function at_recursive($split = array(), $page = array(), $current_page = array())
 	{
+		$activeClass = (isset($this->settings['at_navigation']['activeClass'])) ? $this->settings['at_navigation']['activeClass'] : 'is-active';
 		if (count($split) == 1)
 		{			
 			$is_index = ($split[0] == '') ? true : false;
 			$ret = array(
 				'title'			=> $page['title'],
 				'url'			=> $page['url'],
-				'class'			=> ($page['url'] == $current_page['url']) ? 'is-active' : ''
+				'class'			=> ($page['url'] == $current_page['url']) ? $activeClass : ''
 			);
 			
 			$split0 = ($split[0] == '') ? '_index' : $split[0];
