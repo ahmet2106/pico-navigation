@@ -24,6 +24,13 @@ $config['at_navigation']['id'] = 'at-navigation';
 $config['at_navigation']['class'] = 'at-navigation';
 ```
 
+### set class of list items and links
+
+```
+$config['at_navigation']['class_li'] = 'list-item';
+$config['at_navigation']['class_a'] = 'link-item';
+```
+
 ### exclude pages and folders
 Add these two lines to your `config.php` to exclude **single pages** and/ or **folders**:
 

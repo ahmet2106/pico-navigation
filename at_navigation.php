@@ -42,8 +42,10 @@ class AT_Navigation {
 		// default id
 		if (!isset($this->settings['at_navigation']['id'])) { $this->settings['at_navigation']['id'] = 'at-navigation'; }
 		
-		// default class
+		// default classes
 		if (!isset($this->settings['at_navigation']['class'])) { $this->settings['at_navigation']['class'] = 'at-navigation'; }
+		if (!isset($this->settings['at_navigation']['class_li'])) { $this->settings['at_navigation']['class_li'] = 'li-item'; }
+		if (!isset($this->settings['at_navigation']['class_a'])) { $this->settings['at_navigation']['class_a'] = 'a-item'; }
 		
 		// default excludes
 		$this->settings['at_navigation']['exclude'] = array_merge_recursive(
@@ -65,6 +67,8 @@ class AT_Navigation {
 	{
 		$id = $start ? $this->settings['at_navigation']['id'] : '';
 		$class = $start ? $this->settings['at_navigation']['class'] : '';
+		$class_li = $this->settings['at_navigation']['class_li'];
+		$class_a = $this->settings['at_navigation']['class_a'];
 		$child = '';
 		$ul = $start ? '<ul id="%s" class="%s">%s</ul>' : '<ul>%s</ul>';
 		
@@ -83,11 +87,13 @@ class AT_Navigation {
 		
 		$li = isset($navigation['title'])
 			? sprintf(
-				'<li class="%1$s"><a href="%2$s" class="%1$s" title="%3$s">%3$s</a>%4$s</li>',
+				'<li class="%1$s %5$s"><a href="%2$s" class="%1$s %6$s" title="%3$s">%3$s</a>%4$s</li>',
 				$navigation['class'],
 				$navigation['url'],
 				$navigation['title'],
-				$child
+				$child,
+				$class_li,
+				$class_a
 			)
 			: $child;
 		
