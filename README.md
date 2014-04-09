@@ -14,6 +14,10 @@ I redesigned the style of the **default theme** for a quick preview. The output 
 
 ![Default Theme with at_navigation Plugin](img.png)
 
+just replace the `default` Theme Folder with the one in this repo and add this line to your config.php
+
+    $config['at_navigation']['class'] = 'nav';
+
 
 ### set id and class of navigation element
 
